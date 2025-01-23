@@ -6,10 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
-@RequestMapping("/api/v1/")
 public class HomeController {
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String index(){
         return "index.html";
     }

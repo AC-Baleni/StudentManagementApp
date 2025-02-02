@@ -1,0 +1,6 @@
+com\balenii\api\StudentManagementApp\model\Student.class
+com\balenii\api\StudentManagementApp\controller\HomeController.class
+com\balenii\api\StudentManagementApp\StudentManagementAppApplication.class
+com\balenii\api\StudentManagementApp\repository\StudentRepository.class
+com\balenii\api\StudentManagementApp\service\StudentService.class
+com\balenii\api\StudentManagementApp\controller\StudentController.class

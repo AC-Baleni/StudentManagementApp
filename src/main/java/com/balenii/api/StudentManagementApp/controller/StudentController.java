@@ -44,4 +44,29 @@ public class StudentController {
         return ResponseEntity.ok(students);
     }
 
+    @DeleteMapping("/{studentId}")
+    public ResponseEntity<Student> deleteStudent(@PathVariable String studentId){
+        Student stu = studentService.getStudentById(studentId);
+        studentService.deleteStudent(stu);
+        return ResponseEntity.ok(stu);
+    }
+
+    @PutMapping("/{studentId}")
+    public ResponseEntity<Student> editStudent(@PathVariable String studentId, @RequestBody Student updatedStudent) {
+        // Check if the student exists
+        Student existingStudent = studentService.getStudentById(studentId);
+        if (existingStudent == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Update the fields
+        existingStudent.setFirstName(updatedStudent.getFirstName());
+        existingStudent.setLastName(updatedStudent.getLastName());
+        existingStudent.setCourse(updatedStudent.getCourse());
+
+        // Save and return updated student
+        Student savedStudent = studentService.editStudent(existingStudent);
+        return ResponseEntity.ok(savedStudent);
+    }
+
 }

@@ -29,6 +29,13 @@ public class StudentService {
         return studentRepository.findByStudentId(studentId);
     }
 
+    public void deleteStudent(Student student){studentRepository.delete(student);}
+
+    public Student editStudent(Student stu) {
+        return studentRepository.save(stu);
+    }
+
+
     public List<Student> getAllStudents(){
         return studentRepository.findAll();
     }

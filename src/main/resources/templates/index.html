@@ -106,28 +106,32 @@
         }
     }
 
-    // Edit student
     async function editStudent(studentId) {
-        const newFirstName = prompt("Enter new first name:");
-        const newLastName = prompt("Enter new last name:");
-        const newCourse = prompt("Enter new course:");
+    const newFirstName = prompt("Enter new first name:");
+    const newLastName = prompt("Enter new last name:");
+    const newCourse = prompt("Enter new course:");
 
-        if (newFirstName && newLastName && newCourse) {
-            await fetch(`${apiUrl}/${studentId}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    studentId: studentId,
-                    firstName: newFirstName,
-                    lastName: newLastName,
-                    course: newCourse
-                })
-            });
-            fetchStudents(); // Refresh table
+    if (newFirstName && newLastName && newCourse) {
+        const response = await fetch(`${apiUrl}/${studentId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                firstName: newFirstName,
+                lastName: newLastName,
+                course: newCourse
+            })
+        });
+
+        if (response.ok) {
+            fetchStudents(); // Refresh table if successful
+        } else {
+            alert("Failed to update student.");
         }
     }
+}
+
 
     // Initial fetch on page load
     fetchStudents();
